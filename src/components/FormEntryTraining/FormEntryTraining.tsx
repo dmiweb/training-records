@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 type FormData = {
   id: string,
-  date: FormDataEntryValue,
-  distance: FormDataEntryValue
+  date: string,
+  distance: string
 }
 
 type FormProps = {
@@ -34,7 +34,9 @@ const FormEntryTraining = (props: FormProps): JSX.Element => {
     const formData = new FormData(currentTarget);
     const newItem: {[k: string]: FormDataEntryValue} = Object.fromEntries(formData);
 
-    const{date, distance} = newItem;
+    let{date, distance} = newItem;
+    date = String(date);
+    distance = String(distance);
     
     const id = editItem.edit && item.id;
     const itemUpdate = { id: id || uuidv4(), date, distance};
